@@ -17,7 +17,6 @@ public class NoticiaServicio {
     private NoticiaRepositorio noticiaRepositorio;
 
     public List<Noticia> listarNoticias() {
-
         List<Noticia> noticias = new ArrayList();
         noticias = noticiaRepositorio.findAll();
         System.out.println("Noticias: " + noticias);
