@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Panel de Administración</h1>
+
+<!-- Formulario para Crear Noticia -->
+<form th:action="@{/crearNoticia}" method="post">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
+    <label for="cuerpo">Cuerpo:</label>
+    <textarea id="cuerpo" name="cuerpo" required></textarea>
+    <button type="submit">Crear Noticia</button>
+</form>
+
+<!-- Lista de Noticias con Opciones de Modificación y Eliminación -->
+<div th:each="noticia : ${noticias}">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${noticia.titulo}"></h5>
+            <a th:href="@{'/editarNoticia/' + ${noticia.id}}" class="btn btn-warning">Editar</a>
+            <a th:href="@{'/eliminarNoticia/' + ${noticia.id}}" class="btn btn-danger">Eliminar</a>
+        </div>
+    </div>
+</div>
+
+<!-- Agrega cualquier otro contenido necesario -->
+</body>
+</html>

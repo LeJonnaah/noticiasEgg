@@ -10,3 +10,4 @@ public interface NoticiaRepositorio extends JpaRepository<Noticia, Long> {
 }
 
 
+
