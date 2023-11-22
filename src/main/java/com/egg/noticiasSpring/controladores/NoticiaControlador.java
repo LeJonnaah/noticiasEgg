@@ -17,7 +17,7 @@ public class NoticiaControlador {
 
     @GetMapping("/")
     public String mostrarInicio(Model model) {
-        List<Noticia> noticias = noticiaServicio.listarNoticias();
+        List<Noticia> noticias = noticiaServicio.buscarNoticias();
         model.addAttribute("noticias", noticias);
         return "inicio.html";
     }
