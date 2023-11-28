@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Noticia</title>
+</head>
+<body>
+<h1>Noticia Completa</h1>
+<div>
+    <h2 th:text="${noticia.titulo}"></h2>
+    <p th:text="${noticia.cuerpo}"></p>
+</div>
+<a href="/noticias/listar">Volver al listado</a>
+</body>
+</html>

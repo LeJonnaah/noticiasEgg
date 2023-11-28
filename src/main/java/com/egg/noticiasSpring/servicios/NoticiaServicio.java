@@ -17,10 +17,7 @@ public class NoticiaServicio {
         return noticiaRepositorio.findAll();
     }
 
-    public void crearNoticia(String titulo, String cuerpo) {
-        Noticia noticia = new Noticia();
-        noticia.setTitulo(titulo);
-        noticia.setCuerpo(cuerpo);
+    public void crearNoticia(Noticia noticia) {
         noticiaRepositorio.save(noticia);
     }
 

@@ -11,7 +11,9 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title" th:text="${noticia.titulo}"></h5>
-            <a th:href="@{'/noticia/' + ${noticia.id}}" class="btn btn-primary">Leer más</a>
+            <td>
+                <a th:href="@{/ver/{id}(id=${noticia.id})}">Ver Detalles</a>
+            </td>
         </div>
     </div>
 </div>
