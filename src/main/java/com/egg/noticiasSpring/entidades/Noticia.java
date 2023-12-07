@@ -1,51 +1,22 @@
 package com.egg.noticiasSpring.entidades;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 public class Noticia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(nullable = false)
     private String titulo;
+    @Column(nullable = false)
     private String cuerpo;
 
-    public Noticia() {
-    }
-
-    public Noticia(Long id, String titulo, String cuerpo) {
-        this.id = id;
-        this.titulo = titulo;
-        this.cuerpo = cuerpo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getCuerpo() {
-        return cuerpo;
-    }
-
-    public void setCuerpo(String cuerpo) {
-        this.cuerpo = cuerpo;
-    }
+    @ManyToOne
+    @JoinColumn(name = "periodista_id")
+    private Periodista creador;
 }
