@@ -1,5 +1,6 @@
 package com.egg.noticiasSpring.entidades;
 
+import com.egg.noticiasSpring.enumeraciones.Rol;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;

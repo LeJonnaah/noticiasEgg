@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body class="bg-warning">
+
+<!-- codigo de registro -->
+<div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <h1 class="fw-bold mb-0 fs-2">Registrate gratis</h1>
+                <a th:href="@{/}">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </a>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+                <form th:action="@{/registrar}" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control rounded-3" id="floatingInput" name="nombreUsuario"
+                               th:value="${nombreUsuario}" placeholder="nombre de usuario">
+                        <label for="floatingInput">Nombre de usuario</label>
+                    </div>
+
+<!--                    <div class="form-floating mb-3">-->
+<!--                        <input type="file" class="form-control rounded-3" name="archivo">-->
+<!--                    </div>-->
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" id="floatingPassword" name="password"
+                               th:value="${password}" placeholder="contraseña">
+                        <label for="floatingPassword">Contraseña</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control rounded-3" name="password2"
+                               placeholder="Repetir contraseña" th:value="${password2}">
+                        <label for="floatingPassword">Repetir contraseña</label>
+                    </div>
+
+
+                    <!-- Mensaje de error o exito -->
+
+
+
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-warning" type="submit">Registrate</button>
+
+                    <hr class="my-4">
+                    <div class="row align-items-center">
+                        <div class="col text-center">
+                            <p> <small class="text-center">Si ya tenes una cuenta <strong><a th:href="@{/login}">clic aquí</a></strong> para loguearte</small></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
