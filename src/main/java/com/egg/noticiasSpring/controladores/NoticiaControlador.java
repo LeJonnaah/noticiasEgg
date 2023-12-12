@@ -33,7 +33,6 @@ public class NoticiaControlador {
             model.addAttribute("noticia", noticia);
             return "ver";
         } else {
-            // Manejar el caso en que la noticia no se encuentre
             return "redirect:/noticias/listar";
         }
     }
@@ -60,10 +59,10 @@ public class NoticiaControlador {
         return "panelAdmin.html";
     }
 
-    @PostMapping("/modificar")
-    public String modificarNoticia(@ModelAttribute Noticia noticia) {
-        noticiaServicio.modificarNoticia(noticia.getId(), noticia.getTitulo(), noticia.getCuerpo());
-        return "redirect:/";
+    @GetMapping("/eliminarNoticia")
+    public String eliminarNoticia(Long id) {
+        noticiaServicio.eliminarNoticia(id);
+        return "redirect:/crear";
     }
 
 }
