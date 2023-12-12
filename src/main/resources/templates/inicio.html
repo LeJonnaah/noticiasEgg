@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout">
+</form>
 <h1>Últimas Noticias</h1>
 <div th:each="noticia : ${noticias}">
     <div class="card">
