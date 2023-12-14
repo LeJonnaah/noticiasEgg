@@ -10,8 +10,8 @@ public class Administrador extends Usuario {
         public Administrador() {
         }
 
-        public Administrador(String email, String password, String nombre, String apellido) {
-            super(email, password, nombre, apellido);
+        public Administrador(String password, String nombre, String apellido) {
+            super( password, nombre, apellido);
         }
 
         @Override

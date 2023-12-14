@@ -25,12 +25,12 @@ public class UsuarioServicio implements UserDetailsService {
     private UsuarioRepositorio usuarioRepositorio;
 
     @Transactional
-    public void registrar(String email, String password, String password2) throws Exception {
+    public void registrar(String nombreUsuario,String password, String password2) throws Exception {
         if (!password.equals(password2)) {
             throw new Exception("Las contraseñas no coinciden");
         }
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
+        usuario.setNombreUsuario(nombreUsuario);
         usuario.setPassword(password);
         usuario.setRol(Rol.USER);
         usuarioRepositorio.save(usuario);
@@ -41,30 +41,20 @@ public class UsuarioServicio implements UserDetailsService {
         String email = UUID.randomUUID().toString();
         String password = UUID.randomUUID().toString();
         Usuario usuario = new Usuario();
-        usuario.setEmail(email);
         usuario.setPassword(password);
         usuario.setRol(Rol.USER);
+        usuario.setAlta(new java.sql.Date(System.currentTimeMillis()));
         usuarioRepositorio.save(usuario);
         System.out.println("Generated user: " + email + " with password: " + password);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-        Usuario usuario = usuarioRepositorio.buscarPorMail(email);
-
-        if (usuario != null) {
-
-            List<GrantedAuthority> permisos = new ArrayList();
-
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + usuario.getRol().toString());
-
-            permisos.add(p);
-
-            return new User(usuario.getEmail(), usuario.getPassword(), permisos);
-        } else {
-            return null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario user = usuarioRepositorio.buscarPorNombreUsuario(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
         }
+        return new User(user.getNombreUsuario(), user.getPassword(), new ArrayList<>());
     }
 
 }

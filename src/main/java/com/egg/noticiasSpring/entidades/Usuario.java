@@ -17,7 +17,6 @@ public class Usuario {
     private String id;
 
     private String nombreUsuario;
-    private String email;
     private String password;
     private boolean activo;
 
@@ -27,8 +26,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    public Usuario(String email, String password, String nombre, String apellido) {
-        this.email = email;
+    public Usuario(String password, String nombre, String apellido) {
         this.password = password;
         this.nombreUsuario = nombre + " " + apellido;
         this.activo = true;

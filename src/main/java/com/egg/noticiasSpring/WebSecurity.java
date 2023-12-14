@@ -2,6 +2,7 @@ package com.egg.noticiasSpring;
 
 import com.egg.noticiasSpring.servicios.UsuarioServicio;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,24 +27,20 @@ public class WebSecurity implements WebSeguridad {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .requestMatchers("/admin/*").hasRole("ADMIN")
-                .requestMatchers("/css/*", "/js/*", "/img/*", "/**")
-                .permitAll()
-                .and().formLogin()
-                .loginPage("/login")
-                .loginProcessingUrl("/logincheck")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/inicio")
-                .permitAll()
-                .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .permitAll()
-                .and().csrf()
-                .disable();
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/inicio").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/registrar").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin((formLogin) -> formLogin
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/inicio")
+                        .permitAll()
+                )
+                .logout((logout) -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/inicio")
+                );
     }
 }
